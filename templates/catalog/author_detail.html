@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ author.name }}
+{% endblock %}
+
+{% block content %}
+
+<div class="performer-container">
+
+    <div class="performer__profile">
+
+        <div class="performer__image-wrapper">
+
+            <img src="{{ author.image.url }}"
+                 alt="{{ author.name }}"
+                 class="poet__image">
+
+            <h1 class="performer__name">
+                {{ author.name }}
+            </h1>
+
+            <p class="performer__info">
+                {{ author.description }}
+            </p>
+
+        </div>
+
+    </div>
+
+    <section class="performer__works">
+
+        <h2 class="performer__works-title">
+            Популярные произведения
+        </h2>
+
+        <ul class="performer__works-list">
+
+            {% for work in works %}
+
+            <li class="performer__works-item">
+
+                <div class="performer__work-content">
+
+                    <a href="{% url 'catalog:work_detail' work.slug %}"
+                       class="poet__link">
+
+                        <h3 class="performer__work-title">
+                            {{ work.title }}
+                        </h3>
+
+                        <p class="performer__work-subtitle">
+                            {{ work.duration }}
+                        </p>
+
+                    </a>
+
+                </div>
+
+                <i class="fa-solid fa-ellipsis"></i>
+
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+    </section>
+
+</div>
+
+{% endblock %}
