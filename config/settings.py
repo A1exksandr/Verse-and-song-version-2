@@ -33,7 +33,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "team_finder.urls"
+ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
     {
@@ -50,7 +50,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "team_finder.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
