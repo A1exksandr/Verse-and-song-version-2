@@ -7,9 +7,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("", lambda request: redirect("works:list")),
     path("admin/", admin.site.urls),
-    path("works/", include("works.urls")),
-    path("authors/", include("authors.urls")),
-    path("genres/", include("genres.urls"))
 ]
 
 if settings.DEBUG:
