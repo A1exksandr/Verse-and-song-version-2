@@ -1,7 +1,6 @@
 from django.contrib import admin
+from .models import Author, Genre, Work
 
-'''from .models import Author, Genre, Work
-
-@admin.register(Work)
-class WorkAdmin(admin.ModelAdmin):
-    pass'''
+admin.site.register(Author)
+admin.site.register(Genre)
+admin.site.register(Work)
