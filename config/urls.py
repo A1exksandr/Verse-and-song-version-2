@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path("", lambda request: redirect("works:list")),
+    path("", include("catalog.urls")),
     path("admin/", admin.site.urls),
 ]
 

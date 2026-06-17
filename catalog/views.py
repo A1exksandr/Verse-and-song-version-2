@@ -1,5 +1,4 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
-
-def description(request):
-    return HttpResponse('<h1>Урра, заработало!</h1>')
+def index(request):
+    return render(request, "catalog/index.html")
