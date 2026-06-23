@@ -1,72 +1,51 @@
 {% extends "base.html" %}
 
-{% block title %}
-{{ author.name }}
-{% endblock %}
+{% block title %}{{ author.name }}{% endblock %}
 
 {% block content %}
-
-<div class="performer-container">
-
-    <div class="performer__profile">
-
-        <div class="performer__image-wrapper">
-
-            <img src="{{ author.image.url }}"
-                 alt="{{ author.name }}"
-                 class="poet__image">
-
-            <h1 class="performer__name">
-                {{ author.name }}
-            </h1>
-
-            <p class="performer__info">
-                {{ author.description }}
-            </p>
-
-        </div>
-
+<div class="poet-container">
+  <div class="poet__profile">
+    <div class="poet__image-wrapper">
+      {% if author.image %}
+        <img src="{{ author.image.url }}" alt="{{ author.name }}" class="poet__image">
+      {% endif %}
     </div>
 
-    <section class="performer__works">
+    <h1 class="poet__name">{{ author.name }}</h1>
 
-        <h2 class="performer__works-title">
-            Популярные произведения
-        </h2>
+    <p class="poet__info">
+      {{ author.get_category_display }}
+      {% if author.start_date %} · {{ author.start_date|date:"Y" }}{% endif %}
+      {% if author.end_date %}–{{ author.end_date|date:"Y" }}{% endif %}
+    </p>
 
-        <ul class="performer__works-list">
+    {% if author.bio %}
+      <p class="poet__info">{{ author.bio }}</p>
+    {% endif %}
+  </div>
 
-            {% for work in works %}
+  <section class="poet__works">
+    <h2 class="poet__works-title">Произведения</h2>
 
-            <li class="performer__works-item">
-
-                <div class="performer__work-content">
-
-                    <a href="{% url 'catalog:work_detail' work.slug %}"
-                       class="poet__link">
-
-                        <h3 class="performer__work-title">
-                            {{ work.title }}
-                        </h3>
-
-                        <p class="performer__work-subtitle">
-                            {{ work.duration }}
-                        </p>
-
-                    </a>
-
-                </div>
-
-                <i class="fa-solid fa-ellipsis"></i>
-
-            </li>
-
-            {% endfor %}
-
-        </ul>
-
-    </section>
-
+    <ul class="poet__works-list">
+      {% for work in works %}
+        <li class="poet__works-item">
+          <div class="poet__work-content">
+            <h3 class="poet__work-title">
+              <a href="{% url 'catalog:work_detail' work.slug %}" class="poet__link">
+                {{ work.title }}
+              </a>
+            </h3>
+            <p class="poet__work-subtitle">
+              {{ work.get_work_type_display }}
+              {% if work.publication_date %} · {{ work.publication_date|date:"Y" }}{% endif %}
+            </p>
+          </div>
+        </li>
+      {% empty %}
+        <li class="poet__works-item">Произведения пока не добавлены.</li>
+      {% endfor %}
+    </ul>
+  </section>
 </div>
-
 {% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{ work.title }}{% endblock %}
+
+{% block content %}
+<article class="work-detail">
+  <h1 class="section-title">{{ work.title }}</h1>
+
+  <p class="item-subtitle">
+    <a href="{% url 'catalog:author_detail' work.author.slug %}">
+      {{ work.author.name }}
+    </a>
+    · {{ work.get_work_type_display }}
+  </p>
+
+  {% if work.audio %}
+    <audio controls src="{{ work.audio.url }}"></audio>
+  {% endif %}
+
+  {% if work.text %}
+    <div class="work-text">
+      {{ work.text|linebreaks }}
+    </div>
+  {% endif %}
+</article>
+{% endblock %}
