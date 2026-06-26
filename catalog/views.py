@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
-from .models import Author, Work
+from .models import Author, Genre, Work
 
 
 def index(request):
@@ -27,10 +27,6 @@ def index(request):
         "catalog/index.html",
         context,
     )
-from django.shortcuts import get_object_or_404, render
-
-from .models import Author, Genre, Work
-
 
 def author_list(request):
     authors = Author.objects.all()
@@ -48,7 +44,7 @@ def author_detail(request, slug):
 
 def work_list(request):
     works = Work.objects.select_related("author").all()
-    return render(request, "catalog/work_list.html", {"works": works})
+    return render(request, "catalog/works_list.html", {"works": works})
 
 
 def work_detail(request, slug):
@@ -61,4 +57,7 @@ def work_detail(request, slug):
 
 def genre_list(request):
     genres = Genre.objects.all()
-    return render(request, "catalog/genre_list.html", {"genres": genres})
+    return render(request, "catalog/genres.html", {"genres": genres})
+
+def about(request):
+       return render(request, "catalog/about.html")

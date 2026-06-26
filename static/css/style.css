@@ -516,9 +516,9 @@ main {
   text-align: center;
 }
 
-.creator__info {
-  /* Добавьте стили, если необходимо */
-}
+/*.creator__info {
+  /* Добавьте стили, если необходимо *//*
+}*/
 
 .creator__title {
   font-size: 3.4rem;
@@ -679,9 +679,10 @@ main {
 }
 
 .poem-text {
-  font-size: 1.8rem; /* Увеличивает размер текста */
-  line-height: 0.5; /* Увеличивает межстрочное расстояние */
-  white-space: pre-wrap; /* Сохраняет переносы строк */
+  font-size: 1.8rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  font-family: 'Noto Serif', serif;
 }
 
 .author-link {
