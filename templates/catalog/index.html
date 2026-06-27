@@ -9,15 +9,26 @@
     <h1 class="hero__title">
       Откройте для себя лучшие песни и стихи
     </h1> 
-    <div class="hero__search"> 
-      <div class="hero__search-icon"> 
-        <i class="fas fa-search"></i> 
-      </div> 
-      <input class="hero__search-input" type="text" name="hero__search" id="search" placeholder="Например: Пушкин, Queen, Виктор Цой.."> 
-      <button class="hero__search-button"> 
-        Поиск 
-      </button> 
-    </div> 
+    <form class="hero__search"
+      method="get"
+      action="{% url 'catalog:search' %}">
+
+    <div class="hero__search-icon">
+        <i class="fas fa-search"></i>
+    </div>
+
+    <input
+        class="hero__search-input"
+        type="text"
+        name="q"
+        placeholder="Например: Пушкин, Queen, Виктор Цой..."
+    >
+
+    <button class="hero__search-button" type="submit">
+        Поиск
+    </button>
+
+</form>
   </div> 
 </section>
 
@@ -59,33 +70,18 @@
 
 <section>
   <h2 class="section-title">Лучшие песни</h2>
-
   <div class="items-grid">
     {% for work in featured_songs %}
       <div class="item-card">
-
-        <a href="{% url 'catalog:work_detail' work.slug %}">
-          <div class="item-image">
-            {% if work.image %}
-              <img src="{{ work.image.url }}" alt="{{ work.title }}">
-            {% else %}
-              <img src="https://placehold.co/400x400/e8e8e8/333333?text={{ work.author.name }}">
-            {% endif %}
-          </div>
-        </a>
-
-        <h3 class="item-title">
-          <a href="{% url 'catalog:work_detail' work.slug %}">
-            {{ work.title }}
-          </a>
-        </h3>
-
-        <p class="item-subtitle">
-          <a href="{% url 'catalog:author_detail' work.author.slug %}">
-            {{ work.author.name }}
-          </a>
-        </p>
-
+        <div class="item-image">
+          {% if work.image %}
+            <img src="{{ work.image.url }}" alt="{{ work.title }}">
+          {% else %}
+            <img src="https://placehold.co/400x400/e8e8e8/333333?text={{ work.author.name }}">
+          {% endif %}
+        </div>
+        <h3 class="item-title">{{ work.title }}</h3>
+        <p class="item-subtitle">{{ work.author.name }}</p>
       </div>
     {% empty %}
       <p>Пока нет избранных песен.</p>

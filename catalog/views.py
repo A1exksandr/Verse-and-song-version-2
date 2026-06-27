@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-
+from django.db.models import Q
 from .models import Author, Genre, Work
 
 
@@ -61,3 +61,20 @@ def genre_list(request):
 
 def about(request):
        return render(request, "catalog/about.html")
+
+def search(request):
+    query = request.GET.get("q", "").strip()
+
+    results = Work.objects.none()
+
+    if query:
+        results = Work.objects.select_related("author").filter(
+            Q(title__icontains=query) |
+            Q(text__icontains=query) |
+            Q(author__name__icontains=query)
+        ).distinct()
+
+    return render(request, "catalog/search_results.html", {
+        "query": query,
+        "results": results,
+    })

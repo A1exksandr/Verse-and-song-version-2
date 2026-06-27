@@ -11,4 +11,5 @@ urlpatterns = [
     path("works/<slug:slug>/", views.work_detail, name="work_detail"),
     path("genres/", views.genre_list, name="genre_list"),
     path("about/", views.about, name="about"),
+    path("search/", views.search, name="search"),
 ]
