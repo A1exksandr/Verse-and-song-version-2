@@ -7,7 +7,7 @@ SECRET_KEY = config("DJANGO_SECRET_KEY", default="django-insecure-dev-key")
 
 DEBUG = config("DEBUG", default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition

@@ -23,18 +23,33 @@
 
 <section>
   <h2 class="section-title">Избранные стихи</h2>
+
   <div class="items-grid">
     {% for work in featured_poems %}
       <div class="item-card">
-        <div class="item-image">
-          {% if work.image %}
-            <img src="{{ work.image.url }}" alt="{{ work.title }}">
-          {% else %}
-            <img src="https://placehold.co/400x400/e8e8e8/333333?text={{ work.author.name }}">
-          {% endif %}
-        </div>
-        <h3 class="item-title">{{ work.title }}</h3>
-        <p class="item-subtitle">{{ work.author.name }}</p>
+
+        <a href="{% url 'catalog:work_detail' work.slug %}">
+          <div class="item-image">
+            {% if work.image %}
+              <img src="{{ work.image.url }}" alt="{{ work.title }}">
+            {% else %}
+              <img src="https://placehold.co/400x400/e8e8e8/333333?text={{ work.author.name }}">
+            {% endif %}
+          </div>
+        </a>
+
+        <h3 class="item-title">
+          <a href="{% url 'catalog:work_detail' work.slug %}">
+            {{ work.title }}
+          </a>
+        </h3>
+
+        <p class="item-subtitle">
+          <a href="{% url 'catalog:author_detail' work.author.slug %}">
+            {{ work.author.name }}
+          </a>
+        </p>
+
       </div>
     {% empty %}
       <p>Пока нет избранных стихотворений.</p>
@@ -44,18 +59,33 @@
 
 <section>
   <h2 class="section-title">Лучшие песни</h2>
+
   <div class="items-grid">
     {% for work in featured_songs %}
       <div class="item-card">
-        <div class="item-image">
-          {% if work.image %}
-            <img src="{{ work.image.url }}" alt="{{ work.title }}">
-          {% else %}
-            <img src="https://placehold.co/400x400/e8e8e8/333333?text={{ work.author.name }}">
-          {% endif %}
-        </div>
-        <h3 class="item-title">{{ work.title }}</h3>
-        <p class="item-subtitle">{{ work.author.name }}</p>
+
+        <a href="{% url 'catalog:work_detail' work.slug %}">
+          <div class="item-image">
+            {% if work.image %}
+              <img src="{{ work.image.url }}" alt="{{ work.title }}">
+            {% else %}
+              <img src="https://placehold.co/400x400/e8e8e8/333333?text={{ work.author.name }}">
+            {% endif %}
+          </div>
+        </a>
+
+        <h3 class="item-title">
+          <a href="{% url 'catalog:work_detail' work.slug %}">
+            {{ work.title }}
+          </a>
+        </h3>
+
+        <p class="item-subtitle">
+          <a href="{% url 'catalog:author_detail' work.author.slug %}">
+            {{ work.author.name }}
+          </a>
+        </p>
+
       </div>
     {% empty %}
       <p>Пока нет избранных песен.</p>
