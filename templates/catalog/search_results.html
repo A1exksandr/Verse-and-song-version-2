@@ -3,39 +3,70 @@
 {% block title %}Поиск{% endblock %}
 
 {% block content %}
+
+<section class="hero">
+  <div class="hero__content">
+
+    <h1 class="hero__title">Результаты поиска</h1>
+
+    <form class="hero__search"
+          method="get"
+          action="{% url 'catalog:search' %}">
+
+      <div class="hero__search-icon">
+        <i class="fas fa-search"></i>
+      </div>
+
+      <input
+        class="hero__search-input"
+        type="text"
+        name="q"
+        value="{{ query }}"
+        placeholder="Например: Пушкин, Queen, Виктор Цой...">
+
+      <button class="hero__search-button" type="submit">
+        Поиск
+      </button>
+
+    </form>
+
+  </div>
+</section>
 <section>
   <h1 class="section-title">Результаты поиска</h1>
 
-  {% if query %}
+  {% if not query %}
+    <p>Введите поисковый запрос.</p>
+  {% else %}
     <p>Запрос: {{ query }}</p>
-  {% endif %}
 
-  <div class="items-grid">
-    {% for work in results %}
-      <div class="item-card">
-        <div class="item-image">
-          {% if work.image %}
-            <img src="{{ work.image.url }}" alt="{{ work.title }}">
-          {% else %}
-            <img src="https://placehold.co/400x400/e8e8e8/333333?text={{ work.author.name }}" alt="{{ work.title }}">
-          {% endif %}
+    <div class="items-grid">
+      {% for work in results %}
+        <div class="item-card">
+          <div class="item-image">
+            {% if work.image %}
+              <img src="{{ work.image.url }}" alt="{{ work.title }}">
+            {% else %}
+              <img src="https://placehold.co/400x400/e8e8e8/333333?text={{ work.author.name }}" alt="{{ work.title }}">
+            {% endif %}
+          </div>
+
+          <h3 class="item-title">
+            <a href="{% url 'catalog:work_detail' work.slug %}">
+              {{ work.title }}
+            </a>
+          </h3>
+
+          <p class="item-subtitle">
+            <a href="{% url 'catalog:author_detail' work.author.slug %}">
+              {{ work.author.name }}
+            </a>
+          </p>
         </div>
-
-        <h3 class="item-title">
-          <a href="{% url 'catalog:work_detail' work.slug %}">
-            {{ work.title }}
-          </a>
-        </h3>
-
-        <p class="item-subtitle">
-          <a href="{% url 'catalog:author_detail' work.author.slug %}">
-            {{ work.author.name }}
-          </a>
-        </p>
-      </div>
-    {% empty %}
-      <p>Ничего не найдено.</p>
-    {% endfor %}
-  </div>
+      {% empty %}
+        <p>По запросу «{{ query }}» ничего не найдено.</p>
+      {% endfor %}
+    </div>
+  {% endif %}
 </section>
 {% endblock %}

@@ -60,7 +60,7 @@ def genre_list(request):
     return render(request, "catalog/genres.html", {"genres": genres})
 
 def about(request):
-       return render(request, "catalog/about.html")
+    return render(request, "catalog/about.html")
 
 def search(request):
     query = request.GET.get("q", "").strip()

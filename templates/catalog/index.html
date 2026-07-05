@@ -80,8 +80,17 @@
             <img src="https://placehold.co/400x400/e8e8e8/333333?text={{ work.author.name }}">
           {% endif %}
         </div>
-        <h3 class="item-title">{{ work.title }}</h3>
-        <p class="item-subtitle">{{ work.author.name }}</p>
+        <h3 class="item-title">
+          <a href="{% url 'catalog:work_detail' work.slug %}">
+            {{ work.title }}
+          </a>
+        </h3>
+
+        <p class="item-subtitle">
+          <a href="{% url 'catalog:author_detail' work.author.slug %}">
+            {{ work.author.name }}
+          </a>
+        </p>
       </div>
     {% empty %}
       <p>Пока нет избранных песен.</p>
