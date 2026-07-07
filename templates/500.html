@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Ошибка сервера{% endblock %}
+
+{% block content %}
+<section class="error-page">
+  <div class="error-page__content">
+    <img src="/static/assets/img/free-icon-database-14183935.png" alt="Ошибка сервера" class="error-page__image">
+    <h1 class="error-page__code">500</h1>
+    <h2 class="error-page__title">Сайт временно недоступен</h2>
+
+    <p class="error-page__text">
+      Во время обработки запроса произошла внутренняя ошибка сервера.
+      Мы уже знаем о проблеме и постараемся восстановить работу сайта.
+    </p>
+
+    <div class="error-page__actions">
+      <a href="{% url 'catalog:index' %}" class="error-page__button">На главную</a>
+      <a href="javascript:location.reload()" class="error-page__button error-page__button--secondary">Обновить страницу</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

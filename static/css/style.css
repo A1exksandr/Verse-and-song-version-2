@@ -779,3 +779,57 @@ img.zoom {
   text-decoration: underline;
 }
 
+/*Errors*/
+.error-page {
+  min-height: 72vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem;
+}
+
+.error-page__content {
+  max-width: 100rem;
+  text-align: center;
+}
+
+.error-page__image {
+  max-width: 36rem;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.error-page__code {
+  font-size: 14rem;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.error-page__title {
+  font-size: 4.8rem;
+  margin-bottom: 2rem;
+}
+
+.error-page__text {
+  font-size: 2.4rem;
+  line-height: 1.6;
+  margin-bottom: 4rem;
+}
+
+.error-page__actions {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.error-page__button {
+  display: inline-block;
+  padding: 1.6rem 3.2rem;
+  border-radius: 999px;
+  background-color: #d8d0c3;
+  color: #1f2223;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
+}

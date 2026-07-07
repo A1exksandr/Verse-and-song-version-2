@@ -65,16 +65,30 @@ def about(request):
 def search(request):
     query = request.GET.get("q", "").strip()
 
-    results = Work.objects.none()
+    results = []
 
     if query:
-        results = Work.objects.select_related("author").filter(
-            Q(title__icontains=query) |
-            Q(text__icontains=query) |
-            Q(author__name__icontains=query)
-        ).distinct()
+        normalized_query = query.casefold()
 
-    return render(request, "catalog/search_results.html", {
-        "query": query,
-        "results": results,
-    })
+        works = Work.objects.select_related("author").all()
+
+        for work in works:
+            title = work.title.casefold()
+            text = (work.text or "").casefold()
+            author = work.author.name.casefold()
+
+            if (
+                normalized_query in title
+                or normalized_query in text
+                or normalized_query in author
+            ):
+                results.append(work)
+
+    return render(
+        request,
+        "catalog/search_results.html",
+        {
+            "query": query,
+            "results": results,
+        },
+    )

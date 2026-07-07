@@ -5,7 +5,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config("DJANGO_SECRET_KEY", default="django-insecure-dev-key")
 
-DEBUG = config("DEBUG", default=True, cast=bool)
+#DEBUG = config("DEBUG", default=True, cast=bool) #for searching errors
+DEBUG = config("DEBUG", default=False, cast=bool)
 
 ALLOWED_HOSTS = ["*"]
 

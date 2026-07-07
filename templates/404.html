@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Страница не найдена{% endblock %}
+
+{% block content %}
+<section class="error-page">
+  <div class="error-page__content">
+    <img
+      src="{% static '/assets/img/free-icon-404-error-19015206.png' %}"
+      alt="Страница не найдена"
+      class="error-page__image"
+    >
+
+    <h1 class="error-page__code">404</h1>
+    <h2 class="error-page__title">Страница не найдена</h2>
+
+    <p class="error-page__text">
+      Возможно, произведение, автор или жанр были удалены, либо адрес страницы введён неверно.
+    </p>
+
+    <div class="error-page__actions">
+      <a href="{% url 'catalog:index' %}" class="header__nav-link">На главную</a>
+      <a href="{% url 'catalog:author_list' %}" class="header__nav-link header__nav-link--secondary">К авторам</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
