@@ -38,7 +38,9 @@
             </h3>
             <p class="poet__work-subtitle">
               {{ work.get_work_type_display }}
-              {% if work.publication_date %} · {{ work.publication_date|date:"Y" }}{% endif %}
+              {% if work.publication_year %}
+                · {{ work.publication_year }}
+              {% endif %}
             </p>
           </div>
         </li>

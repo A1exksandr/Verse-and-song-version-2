@@ -81,7 +81,12 @@ class Work(models.Model):
         related_name="works",
     )
 
-    publication_date = models.DateField(blank=True, null=True)
+    #publication_date = models.DateField(blank=True, null=True)
+    publication_year = models.PositiveSmallIntegerField(
+        blank=True,
+        null=True,
+        help_text="Год публикации или создания произведения",
+    )
     image = models.ImageField(upload_to="works/", blank=True)
     audio = models.FileField(upload_to="audio/", blank=True)
     duration = models.PositiveIntegerField(
