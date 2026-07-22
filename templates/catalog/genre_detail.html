@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}{{ genre.name }}{% endblock %}
+
+{% block content %}
+
+<div class="poet-container">
+
+  <div class="poet__profile">
+
+    {% if genre.image %}
+      <div class="poet__image-wrapper">
+        <img
+          src="{{ genre.image.url }}"
+          alt="{{ genre.name }}"
+          class="poet__image"
+        >
+      </div>
+    {% endif %}
+
+    <h1 class="poet__name">{{ genre.name }}</h1>
+
+    {% if genre.description %}
+      <p class="poet__info">{{ genre.description }}</p>
+    {% endif %}
+
+    <p class="poet__info">
+      Произведений: {{ works|length }}
+    </p>
+
+  </div>
+
+  <section>
+    <h2 class="section-title">Произведения</h2>
+
+    <div class="items-grid">
+      {% for work in works %}
+        <div class="item-card">
+
+          <div class="item-image">
+            {% if work.image %}
+              <img src="{{ work.image.url }}" alt="{{ work.title }}">
+            {% else %}
+              <img
+                src="https://placehold.co/400x400/e8e8e8/333333?text={{ work.author.name }}"
+                alt="{{ work.title }}"
+              >
+            {% endif %}
+          </div>
+
+          <h3 class="item-title">
+            <a href="{% url 'catalog:work_detail' work.slug %}">
+              {{ work.title }}
+            </a>
+          </h3>
+
+          <p class="item-subtitle">
+            <a href="{% url 'catalog:author_detail' work.author.slug %}">
+              {{ work.author.name }}
+            </a>
+
+            {% if work.publication_year %}
+              · {{ work.publication_year }}
+            {% endif %}
+          </p>
+
+        </div>
+      {% empty %}
+        <p>В этом жанре пока нет произведений.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+</div>
+
+{% endblock %}

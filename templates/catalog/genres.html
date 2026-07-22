@@ -14,7 +14,9 @@
             <img src="{{ genre.image.url }}" alt="{{ genre.name }}">
           {% endif %}
         </div>
-        <h3 class="item-title">{{ genre.name }}</h3>
+        <a href="{% url 'catalog:genre_detail' genre.slug %}">
+          <h3 class="item-title">{{ genre.name }}</h3>
+        </a>
       </div>
     {% empty %}
       <p>Жанры пока не добавлены.</p>

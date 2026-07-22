@@ -92,3 +92,12 @@ def search(request):
             "results": results,
         },
     )
+
+def genre_detail(request, slug):
+    genre = get_object_or_404(Genre, slug=slug)
+    works = genre.works.select_related("author").all()
+
+    return render(request, "catalog/genre_detail.html", {
+        "genre": genre,
+        "works": works,
+    })
