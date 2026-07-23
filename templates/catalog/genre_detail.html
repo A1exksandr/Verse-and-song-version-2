@@ -49,13 +49,13 @@
           </div>
 
           <h3 class="item-title">
-            <a href="{% url 'catalog:work_detail' work.slug %}">
+            <a href="{{ work.get_absolute_url }}">
               {{ work.title }}
             </a>
           </h3>
 
           <p class="item-subtitle">
-            <a href="{% url 'catalog:author_detail' work.author.slug %}">
+            <a href="{{ work.author.get_absolute_url }}">
               {{ work.author.name }}
             </a>
 
