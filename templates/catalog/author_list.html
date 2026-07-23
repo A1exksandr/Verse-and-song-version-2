@@ -10,7 +10,7 @@
   <ul class="authors__list">
     {% for author in authors %}
       <li class="authors__item">
-        <a href="{% url 'catalog:author_detail' author.slug %}" class="authors__link">
+        <a href="{{ author.get_absolute_url }}" class="authors__link">
           <span class="authors__name">{{ author.name }}</span>
           <i class="fa-solid fa-arrow-right"></i>
         </a>
