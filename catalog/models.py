@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Author(models.Model):
@@ -34,9 +35,16 @@ class Author(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    
+    def get_absolute_url(self):
+        return reverse(
+            "catalog:author_detail",
+            kwargs={"slug": self.slug},
+        )
+    
     def __str__(self):
         return self.name
+    
 
 
 class Genre(models.Model):
@@ -48,6 +56,12 @@ class Genre(models.Model):
     )
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to="genres/", blank=True)
+
+    def get_absolute_url(self):
+        return reverse(
+            "catalog:genre_detail",
+            kwargs={"slug": self.slug},
+        )
 
     def __str__(self):
         return self.name
@@ -98,6 +112,12 @@ class Work(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse(
+            "catalog:work_detail",
+            kwargs={"slug": self.slug},
+        )
 
     def __str__(self):
         return self.title
